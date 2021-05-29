@@ -42,4 +42,28 @@ public class ProductsController {
 	public DataResult<Product> getByProductName(@RequestParam String productName){
 		return this.productService.getByProductName(productName);
 	}
+	
+	@GetMapping("/getByProductNameAndCategoryId")
+	public DataResult<Product> getByProductNameAndCategoryId(@RequestParam("productName") String productName,
+			@RequestParam("categoryId") int categoryId){
+		return this.productService.getByProductNameAndCategoryId(productName, categoryId);
+	}
+	
+	@GetMapping("/getByProductNameContains")
+	public DataResult<List<Product>> getByProductNameContains(@RequestParam String productName){
+		return this.productService.getByProductNameContains(productName);
+	}
+	
+	@GetMapping("/getAllByPage")
+	public DataResult<List<Product>> getAll(int pageNo, int pageSize){
+		return this.productService.getAll(pageNo-1, pageSize);
+	}
+	
+	@GetMapping("/getAllByDesc")
+	public DataResult<List<Product>> getAllSorted() {   //() içinde isteğimize göre parametre verip buna göre ASC ve DESC kullanabiliriz.
+		return this.productService.getAllSorted();
+	}
+	
+
+
 }
